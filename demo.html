@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="slides/css/slides.css" />
+		<style type="text/css">
+			body{ margin: 0; height: 100%; width: auto;}
+			img{ width: 100%; height: auto;}
+		</style>
+	</head>
+
+	<body>
+		<div class="loopbox">
+			<ul>
+				<li>
+					<img src="img/bg-x1.png" />
+				</li>
+				<li>
+					<img src="img/bg-x2.png" />
+				</li>
+				<li>
+					<img src="img/bg-x3.png" />
+				</li>
+			</ul>
+		</div>
+
+		<!--[if IE]>
+		<script src="js/jquery-1.10.1.min.js"></script>
+		<script src="slides/js/slides.js"></script>
+		<![endif]-->
+		<!--[if !IE]><!-->
+		<script src="js/zepto.min.js"></script>
+		<script src="js/zepto.fx.js"></script>
+		<script src="slides/js/zepto.slides.js"></script>
+		<!--<![endif]-->
+		<script type="text/javascript">
+			(function() {
+				/*
+				    注意：$.slides返回的scrollImg对象上有next，prev，go三个方法，可以实现外部对滚动索引的控制。
+				    如：slides.next();//会切换到下一张图片
+				      slides.go(0);//会切换到第一张图片
+				*/
+				var slides = $.slides('.loopbox', {
+					loop: true, //循环切换
+					auto: true, //自动切换
+					width: '100%', //百分比
+					callback: function(index) { //这里传过来的是索引值
+						console.log(index);
+					}
+				});
+			})()
+		</script>
+	</body>
+
+</html>
