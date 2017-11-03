@@ -1,4 +1,5 @@
-;(function($) {
+;
+(function($) {
 
 	/*
 	   	 图片滚动效果
@@ -16,12 +17,19 @@
 	function slides(box, config) {
 		this.box = $(box);
 		this.ul = $(box).find('ul');
-		this.config = $.extend({}, config || {});
+		
+		this.config = $.extend({
+			'loop': true,
+			'auto': true,
+			'arrow': true,
+			'ol': true
+		}, config || {});
+		
 		this.width = this.config.width || this.ul.children().eq(0).width(); //一次滚动的宽度
 		this.height = this.config.height || this.ul.children().eq(0).height();
 		this.size = this.config.size || this.ul.children().length; //
-		this.loop = this.config.loop || true; //默认能循环滚动
-		this.auto = this.config.auto || true; //默认自动滚动
+		this.loop = this.config.loop; //默认能循环滚动
+		this.auto = this.config.auto; //默认自动滚动
 		this.auto_wait_time = this.config.auto_wait_time || 3000; //轮播间隔
 		this.scroll_time = 300; //滚动时长
 		this.minleft = -this.width * (this.size - 1); //最小left值，注意是负数[不循环情况下的值]
@@ -33,8 +41,8 @@
 		this.index = 0; //记录当前位置
 		this.busy = false; //记录是否正在滚动
 		this.timer; //定时器
-		this.arrow = this.config.arrow || true; //是否显示上一个，下一个按钮
-		this.ol = this.config.ol || true; //是否显示数目条
+		this.arrow = this.config.arrow; //是否显示上一个，下一个按钮
+		this.ol = this.config.ol; //是否显示数目条
 		this.activeCss = 'flex-active'; //显示数选中样式
 		this.isPercent = !!/^[0-9]*[1-9][0-9]*%$/.exec(this.config.width); //宽是否是百分比
 		this.percent = this.isPercent ? this.config.width.replace('%', '') : 0;
